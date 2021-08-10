@@ -1,0 +1,14 @@
+import './getActualDomain';
+import './getDomain';
+import './isSameDomain';
+import './matchDomain';
+import './getParent';
+import './getOpener';
+import './getParents';
+import './getAllFramesInWindow';
+import './getUserAgent';
+import './stringifyDomainPattern';
+import './getDomainFromUrl';
+import './isBlankDomain';
+import './closeWindow';
+import './isFileProtocol';
