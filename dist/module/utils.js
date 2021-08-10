@@ -53,7 +53,6 @@ export function getOpener(win) {
 }
 export function canReadFromWindow(win) {
   try {
-    // $FlowFixMe
     noop(win && win.location && win.location.href);
     return true;
   } catch (err) {// pass
@@ -83,10 +82,11 @@ export function getActualDomain(win) {
   }
 
   if (protocol === PROTOCOL.ABOUT) {
+    // @ts-ignore - trying to reassing to something that might be window
     var parent = getParent(win);
 
     if (parent && canReadFromWindow(parent)) {
-      // $FlowFixMe
+      // @ts-ignore
       return getActualDomain(parent);
     }
 
@@ -100,15 +100,17 @@ export function getActualDomain(win) {
   }
 
   return protocol + "//" + host;
-}
+} // @ts-ignore
+
 export function getDomain(win) {
   if (win === void 0) {
     win = window;
   }
 
-  var domain = getActualDomain(win);
+  var domain = getActualDomain(win); // @ts-ignore - mockDomain
 
   if (domain && win.mockDomain && win.mockDomain.indexOf(PROTOCOL.MOCK) === 0) {
+    // @ts-ignore - mockDomain
     return win.mockDomain;
   }
 
@@ -116,7 +118,6 @@ export function getDomain(win) {
 }
 export function isBlankDomain(win) {
   try {
-    // $FlowFixMe
     if (!win.location.href) {
       return true;
     }
@@ -147,7 +148,6 @@ export function isActuallySameDomain(win) {
   }
 
   try {
-    // $FlowFixMe
     if (isAboutProtocol(win) && canReadFromWindow(win)) {
       return true;
     }
@@ -155,7 +155,6 @@ export function isActuallySameDomain(win) {
   }
 
   try {
-    // $FlowFixMe
     if (getActualDomain(win) === getActualDomain(window)) {
       return true;
     }
@@ -165,6 +164,7 @@ export function isActuallySameDomain(win) {
   return false;
 }
 export function isSameDomain(win) {
+  // @ts-ignore
   if (!isActuallySameDomain(win)) {
     return false;
   }
@@ -172,13 +172,11 @@ export function isSameDomain(win) {
   try {
     if (win === window) {
       return true;
-    } // $FlowFixMe
-
+    }
 
     if (isAboutProtocol(win) && canReadFromWindow(win)) {
       return true;
-    } // $FlowFixMe
-
+    }
 
     if (getDomain(window) === getDomain(win)) {
       return true;
@@ -191,8 +189,7 @@ export function isSameDomain(win) {
 export function assertSameDomain(win) {
   if (!isSameDomain(win)) {
     throw new Error("Expected window to be same domain");
-  } // $FlowFixMe
-
+  }
 
   return win;
 }
@@ -408,8 +405,9 @@ export function isFrameWindowClosed(frame) {
     var parent = frame;
 
     while (parent.parentNode && parent.parentNode !== parent) {
+      // @ts-ignore
       parent = parent.parentNode;
-    } // $FlowFixMe
+    } // @ts-ignore
 
 
     if (!parent.host || !doc.documentElement.contains(parent.host)) {
@@ -471,7 +469,7 @@ export function isWindowClosed(win, allowMock) {
 
   if (allowMock && isSameDomain(win)) {
     try {
-      // $FlowFixMe
+      // @ts-ignore
       if (win.mockclosed) {
         return true;
       }
@@ -537,7 +535,8 @@ export function linkFrameWindow(frame) {
   }
 }
 export function getUserAgent(win) {
-  win = win || window;
+  win = win || window; // @ts-ignore
+
   return win.navigator.mockUserAgent || win.navigator.userAgent;
 }
 export function getFrameByName(win, name) {
@@ -547,7 +546,6 @@ export function getFrameByName(win, name) {
     var childFrame = winFrames[_i9];
 
     try {
-      // $FlowFixMe
       if (isSameDomain(childFrame) && childFrame.name === name && winFrames.indexOf(childFrame) !== -1) {
         return childFrame;
       }
@@ -556,16 +554,18 @@ export function getFrameByName(win, name) {
   }
 
   try {
-    // $FlowFixMe
+    // @ts-ignore
     if (winFrames.indexOf(win.frames[name]) !== -1) {
-      // $FlowFixMe
+      // @ts-ignore
       return win.frames[name];
     }
   } catch (err) {// pass
   }
 
   try {
+    // @ts-ignore
     if (winFrames.indexOf(win[name]) !== -1) {
+      // @ts-ignore
       return win[name];
     }
   } catch (err) {// pass
@@ -640,6 +640,7 @@ export function getAncestors(win) {
   var ancestor = win;
 
   while (ancestor) {
+    // @ts-ignore
     ancestor = getAncestor(ancestor);
 
     if (ancestor) {
@@ -725,6 +726,7 @@ export function getDistanceFromTop(win) {
   var parent = win;
 
   while (parent) {
+    // @ts-ignore - trying to reassing to something that might be window
     parent = getParent(parent);
 
     if (parent) {
@@ -744,7 +746,8 @@ export function getNthParent(win, n) {
   for (var i = 0; i < n; i++) {
     if (!parent) {
       return;
-    }
+    } // @ts-ignore - trying to reassing to something that might be window
+
 
     parent = getParent(parent);
   }
@@ -815,7 +818,7 @@ export function matchDomain(pattern, origin) {
 
     if (Array.isArray(origin)) {
       return false;
-    } // $FlowFixMe
+    } // @ts-ignore - earlier already shortcutted the string case
 
 
     return Boolean(origin.match(pattern));
@@ -908,7 +911,6 @@ export function isWindow(obj) {
   }
 
   try {
-    // $FlowFixMe method-unbinding
     if (Object.prototype.toString.call(obj) === '[object Window]') {
       return true;
     }
@@ -959,6 +961,7 @@ export function isWindow(obj) {
   }
 
   try {
+    // @ts-ignore this equality check is a self compare
     if (noop(obj === obj) === '__unlikely_value__') {
       // eslint-disable-line no-self-compare
       return false;
@@ -1000,7 +1003,8 @@ export function isMockDomain(domain) {
 export function normalizeMockUrl(url) {
   if (!isMockDomain(getDomainFromUrl(url))) {
     return url;
-  }
+  } // @ts-ignore - global
+
 
   if (!__TEST__) {
     throw new Error("Mock urls not supported out of test mode");
@@ -1016,8 +1020,10 @@ export function closeWindow(win) {
 }
 export function getFrameForWindow(win) {
   if (isSameDomain(win)) {
+    // @ts-ignore
     return assertSameDomain(win).frameElement;
-  }
+  } // @ts-ignore not an array type, but is iterable so fine
+
 
   for (var _i21 = 0, _document$querySelect2 = document.querySelectorAll('iframe'); _i21 < _document$querySelect2.length; _i21++) {
     var frame = _document$querySelect2[_i21];

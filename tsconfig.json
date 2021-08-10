@@ -1,3 +1,6 @@
 {
-  "extends": "grumbler-scripts/config/tsconfig.json"
+    "extends": "grumbler-scripts/config/tsconfig.json",
+    "compilerOptions": {
+        "lib": ["DOM", "DOM.Iterable", "ESNext"]
+    }
 }
