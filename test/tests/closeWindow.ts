@@ -14,7 +14,10 @@ describe('closeWindow', () => {
         const expectedResult = true;
         // @ts-ignore
         closeWindow(win);
-        // @ts-ignore expected result never changes. This test might not be doing anything
-        assert(fnCalled === expectedResult, `Expected window.close to be called`);
+        assert(
+            // @ts-ignore expected result never changes. This test might not be doing anything
+            fnCalled === expectedResult,
+            `Expected window.close to be called`
+        );
     });
 });

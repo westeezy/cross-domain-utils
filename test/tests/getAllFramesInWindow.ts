@@ -6,19 +6,19 @@ describe('getAllFramesInWindow cases', () => {
             name: 'x'
         };
         const y: Record<string, any> = {
-            name:   'y',
-            frames: [ x ]
+            name:  'y',
+            frames:[ x ]
         };
         const a: Record<string, any> = {
             name: 'a'
         };
         const b: Record<string, any> = {
-            name:   'b',
-            frames: [ a ]
+            name:  'b',
+            frames:[ a ]
         };
         const z: Record<string, any> = {
-            name:   'z',
-            frames: [ b, y ]
+            name:  'z',
+            frames:[ b, y ]
         };
         x.top = z;
         x.parent = y;
@@ -35,7 +35,9 @@ describe('getAllFramesInWindow cases', () => {
         const foundFrames = getAllFramesInWindow(x);
 
         if (foundFrames.length !== allFrames.length) {
-            throw new Error(`Expected to find ${ allFrames.length }, but found ${ foundFrames.length }`);
+            throw new Error(
+                `Expected to find ${ allFrames.length }, but found ${ foundFrames.length }`
+            );
         }
 
         for (const frame of allFrames) {
@@ -54,7 +56,9 @@ describe('getAllFramesInWindow cases', () => {
 
         // @ts-ignore
         if (foundFrames.indexOf(mockFrame) === -1) {
-            throw new Error(`getAllFramesInWindow expected to find mock frame in window.frames`);
+            throw new Error(
+                `getAllFramesInWindow expected to find mock frame in window.frames`
+            );
         }
 
         // @ts-ignore

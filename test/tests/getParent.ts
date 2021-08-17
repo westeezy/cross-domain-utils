@@ -29,7 +29,6 @@ describe('getParent cases', () => {
             get() {
                 throw new Error('error');
             }
-
         });
         const parent = getParent(win);
 

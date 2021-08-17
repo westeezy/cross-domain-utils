@@ -10,7 +10,8 @@ describe('getDomainFromUrl test cases ', () => {
         expect(domain).to.equal(expected);
     });
     it('should get url protocol and domain for a long https url', () => {
-        const url = 'https://www.google.com/search?q=Cross+Domain+utilities+npm&oq=cros&aqs=chrome.0.69i59l3j69i57j69i60l3j69i65.1620j0j7&sourceid=chrome&ie=UTF-8';
+        const url =
+            'https://www.google.com/search?q=Cross+Domain+utilities+npm&oq=cros&aqs=chrome.0.69i59l3j69i57j69i60l3j69i65.1620j0j7&sourceid=chrome&ie=UTF-8';
         const expected = 'https://www.google.com';
         const domain = getDomainFromUrl(url);
         expect(domain).to.equal(expected);

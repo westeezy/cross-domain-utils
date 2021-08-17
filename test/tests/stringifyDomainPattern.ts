@@ -9,7 +9,9 @@ describe('stringifyDomainPattern test cases ', () => {
         const expected = `RegExp(${ pattern.toString() })`;
 
         if (typeof domainPatternStringified !== 'string') {
-            throw new TypeError(`Expected domainPattern to be string, instead got ${ typeof domainPatternStringified }`);
+            throw new TypeError(
+                `Expected domainPattern to be string, instead got ${ typeof domainPatternStringified }`
+            );
         }
 
         expect(domainPatternStringified).to.equal(expected);
@@ -18,7 +20,8 @@ describe('stringifyDomainPattern test cases ', () => {
         const p1 = '/[a-zA-Z0-9]{1,5}/';
         const p2 = '/\\.[a-zA-Z]{2,}$/';
         const domainPatternsArray = [ p1, p2 ];
-        const domainPatternsArrayStringified = stringifyDomainPattern(domainPatternsArray);
+        const domainPatternsArrayStringified =
+            stringifyDomainPattern(domainPatternsArray);
         const expected = `(${ p1 } | ${ p2 })`;
         expect(domainPatternsArrayStringified).to.equal(expected);
     });

@@ -12,7 +12,10 @@ describe('isFileProtocol', () => {
         });
         const expectedResult = true;
         const result = isFileProtocol(win);
-        assert(result === expectedResult, `Expected result to be ${ expectedResult.toString() } but received ${ result.toString() }`);
+        assert(
+            result === expectedResult,
+            `Expected result to be ${ expectedResult.toString() } but received ${ result.toString() }`
+        );
     });
     it('will return true when window.location is pointing to a file', () => {
         const win = getSameDomainWindow({
@@ -22,6 +25,9 @@ describe('isFileProtocol', () => {
         });
         const expectedResult = false;
         const result = isFileProtocol(win);
-        assert(result === expectedResult, `Expected result to be ${ expectedResult.toString() } but received ${ result.toString() }`);
+        assert(
+            result === expectedResult,
+            `Expected result to be ${ expectedResult.toString() } but received ${ result.toString() }`
+        );
     });
 });
