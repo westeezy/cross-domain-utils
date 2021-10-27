@@ -2,6 +2,7 @@ import { getParents } from '../../src';
 import { getCrossDomainWindow } from '../win';
 
 describe('getParents cases', () => {
+
     it('should get all of a windows parents', () => {
         const win = getCrossDomainWindow({
             parent: {
@@ -10,6 +11,7 @@ describe('getParents cases', () => {
                 }
             }
         });
+
         // @ts-ignore
         win.parent.parent.parent.parent = win.parent.parent.parent;
         const parents = getParents(win);
@@ -36,4 +38,5 @@ describe('getParents cases', () => {
             );
         }
     });
+
 });

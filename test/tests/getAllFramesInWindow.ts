@@ -1,22 +1,23 @@
 import { getAllFramesInWindow } from '../../src';
 
 describe('getAllFramesInWindow cases', () => {
+
     it('should get all of the frames', () => {
-        const x : Record<string, any> = {
+        const x : Record<string, unknown> = {
             name: 'x'
         };
-        const y : Record<string, any> = {
+        const y : Record<string, unknown> = {
             name:   'y',
             frames: [ x ]
         };
-        const a : Record<string, any> = {
+        const a : Record<string, unknown> = {
             name: 'a'
         };
-        const b : Record<string, any> = {
+        const b : Record<string, unknown> = {
             name:   'b',
             frames: [ a ]
         };
-        const z : Record<string, any> = {
+        const z : Record<string, unknown> = {
             name:   'z',
             frames: [ b, y ]
         };
@@ -35,9 +36,7 @@ describe('getAllFramesInWindow cases', () => {
         const foundFrames = getAllFramesInWindow(x);
 
         if (foundFrames.length !== allFrames.length) {
-            throw new Error(
-                `Expected to find ${ allFrames.length }, but found ${ foundFrames.length }`
-            );
+            throw new Error(`Expected to find ${ allFrames.length }, but found ${ foundFrames.length }`);
         }
 
         for (const frame of allFrames) {
@@ -47,6 +46,7 @@ describe('getAllFramesInWindow cases', () => {
             }
         }
     });
+
     it('should get a mock frame defined in window.frames', () => {
         const frames = window.frames;
         const mockFrame = {};
@@ -56,12 +56,11 @@ describe('getAllFramesInWindow cases', () => {
 
         // @ts-ignore
         if (foundFrames.indexOf(mockFrame) === -1) {
-            throw new Error(
-                `getAllFramesInWindow expected to find mock frame in window.frames`
-            );
+            throw new Error(`getAllFramesInWindow expected to find mock frame in window.frames`);
         }
 
         // @ts-ignore
         window.frames = frames;
     });
+
 });

@@ -4,6 +4,7 @@ import { isFileProtocol, PROTOCOL } from '../../src';
 import { getSameDomainWindow } from '../win';
 
 describe('isFileProtocol', () => {
+
     it('will return true when window.location is pointing to a file', () => {
         const win = getSameDomainWindow({
             location: {
@@ -17,6 +18,7 @@ describe('isFileProtocol', () => {
             `Expected result to be ${ expectedResult.toString() } but received ${ result.toString() }`
         );
     });
+
     it('will return true when window.location is pointing to a file', () => {
         const win = getSameDomainWindow({
             location: {
@@ -30,4 +32,5 @@ describe('isFileProtocol', () => {
             `Expected result to be ${ expectedResult.toString() } but received ${ result.toString() }`
         );
     });
+
 });

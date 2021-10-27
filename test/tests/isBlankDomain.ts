@@ -4,6 +4,7 @@ import { isBlankDomain } from '../../src';
 import { getSameDomainWindow } from '../win';
 
 describe('isBlankDomain', () => {
+
     it('returns true if window.href is falsy', () => {
         const falsyValues = [ 0, '', null, undefined, NaN ];
         const windows = falsyValues.map((falsyValue) =>
@@ -20,6 +21,7 @@ describe('isBlankDomain', () => {
             `Expected isBlankDomain result to return ${ expectedResult.toString() }`
         );
     });
+
     it('returns true if window.href about:blank', () => {
         const win = getSameDomainWindow({
             location: {
@@ -34,6 +36,7 @@ describe('isBlankDomain', () => {
             `Expected isBlankDomain result to be ${ expectedResult.toString() }, got ${ result.toString() }`
         );
     });
+
     it('should return false if window.href is truthy but not about:blank', () => {
         const win = getSameDomainWindow({
             location: {
@@ -48,4 +51,5 @@ describe('isBlankDomain', () => {
             `Expected isBlankDomain result to be "${ expectedResult.toString() }", got "${ result.toString() }"`
         );
     });
+
 });

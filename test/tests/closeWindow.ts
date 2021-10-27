@@ -4,6 +4,7 @@ import { closeWindow } from '../../src';
 import { getSameDomainWindow } from '../win';
 
 describe('closeWindow', () => {
+
     it('will call window.close', () => {
         let fnCalled = false;
         const win = getSameDomainWindow({
@@ -11,13 +12,11 @@ describe('closeWindow', () => {
                 fnCalled = true;
             }
         });
-        const expectedResult = true;
+
         // @ts-ignore
         closeWindow(win);
-        assert(
-            // @ts-ignore expected result never changes. This test might not be doing anything
-            fnCalled === expectedResult,
-            `Expected window.close to be called`
-        );
+
+        assert(fnCalled, `Expected window.close to be called`);
     });
+
 });

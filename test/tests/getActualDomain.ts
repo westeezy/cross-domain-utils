@@ -2,6 +2,7 @@ import { getActualDomain } from '../../src';
 import { getSameDomainWindow } from '../win';
 
 describe('getActualDomain cases', () => {
+
     it('should get the domain for a specific window', () => {
         const win = getSameDomainWindow({
             location: {
@@ -9,6 +10,7 @@ describe('getActualDomain cases', () => {
                 host:     'foo.com:8087'
             }
         });
+
         const domain = getActualDomain(win);
         const expectedDomain = `${ win.location.protocol }//${ win.location.host }`;
 
@@ -18,4 +20,5 @@ describe('getActualDomain cases', () => {
             );
         }
     });
+
 });
