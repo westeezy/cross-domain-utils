@@ -15,8 +15,8 @@ describe('getDomain cases', () => {
     it('should get the domain for a specific window', () => {
         const win = getSameDomainWindow({
             location: {
-                protocol:'https:',
-                host:    'foo.com:8087'
+                protocol: 'https:',
+                host:     'foo.com:8087'
             }
         });
         const domain = getDomain(win);
@@ -31,8 +31,8 @@ describe('getDomain cases', () => {
     it('should get the mock domain for a specific window', () => {
         const win = getSameDomainWindow({
             location: {
-                protocol:'https:',
-                host:    'foo.com:8087'
+                protocol: 'https:',
+                host:     'foo.com:8087'
             },
             mockDomain: 'mock://zomg.com:3456'
         });
@@ -48,8 +48,8 @@ describe('getDomain cases', () => {
     it('should get the actual domain for a specific window when mock domain is not mock://', () => {
         const win = getSameDomainWindow({
             location: {
-                protocol:'https:',
-                host:    'foo.com:8087'
+                protocol: 'https:',
+                host:     'foo.com:8087'
             },
             mockDomain: 'mocc://zomg.com:3456'
         });
@@ -64,8 +64,8 @@ describe('getDomain cases', () => {
     });
     it('should throw errors when the window does not have a location', () => {
         const win = getSameDomainWindow({
-            location:  null,
-            mockDomain:'mocc://zomg.com:3456'
+            location:   null,
+            mockDomain: 'mocc://zomg.com:3456'
         });
         let error;
 
@@ -82,8 +82,8 @@ describe('getDomain cases', () => {
     it('should throw errors when the window does not have a protocol', () => {
         const win = getSameDomainWindow({
             location: {
-                protocol:null,
-                host:    'foo.com:8087'
+                protocol: null,
+                host:     'foo.com:8087'
             },
             mockDomain: 'mocc://zomg.com:3456'
         });
@@ -102,8 +102,8 @@ describe('getDomain cases', () => {
     it('should throw errors when the window does not have a host', () => {
         const win = getSameDomainWindow({
             location: {
-                protocol:'https:',
-                host:    null
+                protocol: 'https:',
+                host:     null
             },
             mockDomain: 'mocc://zomg.com:3456'
         });

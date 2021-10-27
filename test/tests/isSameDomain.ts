@@ -5,8 +5,8 @@ describe('isSameDomain cases', () => {
     it('should give a positive result for isSameDomain', () => {
         const win = getSameDomainWindow({
             location: {
-                protocol:window.location.protocol,
-                host:    window.location.host
+                protocol: window.location.protocol,
+                host:     window.location.host
             }
         });
         const result = isSameDomain(win);
@@ -21,13 +21,13 @@ describe('isSameDomain cases', () => {
     it('should give a negative result for isSameDomain with a different protocol', () => {
         const win = getSameDomainWindow({
             location: {
-                protocol:'https:',
-                host:    window.location.host
+                protocol: 'https:',
+                host:     window.location.host
             }
         });
         // $FlowFixMe
         Object.defineProperty(win.location, 'href', {
-            get(): string {
+            get() : string {
                 return `${ win.location.protocol }//${ win.location.host }`;
             }
         });
@@ -43,13 +43,13 @@ describe('isSameDomain cases', () => {
     it('should give a negative result for isSameDomain with a different host', () => {
         const win = getSameDomainWindow({
             location: {
-                protocol:window.location.protocol,
-                host:    'foobar.com:12345'
+                protocol: window.location.protocol,
+                host:     'foobar.com:12345'
             }
         });
         // $FlowFixMe
         Object.defineProperty(win.location, 'href', {
-            get(): string {
+            get() : string {
                 return `${ win.location.protocol }//${ win.location.host }`;
             }
         });
@@ -65,13 +65,13 @@ describe('isSameDomain cases', () => {
     it('should give a negative result for isSameDomain with a different protocol and host', () => {
         const win = getSameDomainWindow({
             location: {
-                protocol:'https:',
-                host:    'foobar.com:12345'
+                protocol: 'https:',
+                host:     'foobar.com:12345'
             }
         });
         // $FlowFixMe
         Object.defineProperty(win.location, 'href', {
-            get(): string {
+            get() : string {
                 return `${ win.location.protocol }//${ win.location.host }`;
             }
         });
@@ -96,7 +96,7 @@ describe('isSameDomain cases', () => {
         });
         // $FlowFixMe
         Object.defineProperty(win.location, 'href', {
-            get(): string {
+            get() : string {
                 return `${ win.location.protocol }//${ win.location.host }`;
             }
         });
@@ -121,7 +121,7 @@ describe('isSameDomain cases', () => {
         });
         // $FlowFixMe
         Object.defineProperty(win.location, 'href', {
-            get(): string {
+            get() : string {
                 return `${ win.location.protocol }//${ win.location.host }`;
             }
         });
@@ -138,14 +138,14 @@ describe('isSameDomain cases', () => {
         const win = getSameDomainWindow({});
         Object.defineProperty(win, 'location', {
             value: {
-                protocol:window.location.protocol,
-                host:    window.location.host
+                protocol: window.location.protocol,
+                host:     window.location.host
             },
             enumerable: false
         });
         // $FlowFixMe
         Object.defineProperty(win.location, 'href', {
-            get(): string {
+            get() : string {
                 return `${ win.location.protocol }//${ win.location.host }`;
             }
         });
@@ -163,14 +163,14 @@ describe('isSameDomain cases', () => {
         window.mockDomain = 'mock://foobar.com:12345';
         const win = getSameDomainWindow({
             location: {
-                protocol:window.location.protocol,
-                host:    window.location.host
+                protocol: window.location.protocol,
+                host:     window.location.host
             },
             mockDomain: 'mock://foobar.com:12345'
         });
         // $FlowFixMe
         Object.defineProperty(win.location, 'href', {
-            get(): string {
+            get() : string {
                 return `${ win.location.protocol }//${ win.location.host }`;
             }
         });
@@ -191,14 +191,14 @@ describe('isSameDomain cases', () => {
         window.mockDomain = 'mock://fizzbuzz.com:345';
         const win = getSameDomainWindow({
             location: {
-                protocol:window.location.protocol,
-                host:    window.location.host
+                protocol: window.location.protocol,
+                host:     window.location.host
             },
             mockDomain: 'mock://foobar.com:12345'
         });
         // $FlowFixMe
         Object.defineProperty(win.location, 'href', {
-            get(): string {
+            get() : string {
                 return `${ win.location.protocol }//${ win.location.host }`;
             }
         });

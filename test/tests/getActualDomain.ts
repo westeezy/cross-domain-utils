@@ -5,8 +5,8 @@ describe('getActualDomain cases', () => {
     it('should get the domain for a specific window', () => {
         const win = getSameDomainWindow({
             location: {
-                protocol:'https:',
-                host:    'foo.com:8087'
+                protocol: 'https:',
+                host:     'foo.com:8087'
             }
         });
         const domain = getActualDomain(win);

@@ -14,8 +14,8 @@ describe('getOpener cases', () => {
     });
     it('should not get the opener window if the window has a parent', () => {
         const win = getCrossDomainWindow({
-            parent:{},
-            opener:{}
+            parent: {},
+            opener: {}
         });
         const opener = getOpener(win);
 

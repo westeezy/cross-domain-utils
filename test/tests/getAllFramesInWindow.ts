@@ -2,23 +2,23 @@ import { getAllFramesInWindow } from '../../src';
 
 describe('getAllFramesInWindow cases', () => {
     it('should get all of the frames', () => {
-        const x: Record<string, any> = {
+        const x : Record<string, any> = {
             name: 'x'
         };
-        const y: Record<string, any> = {
-            name:  'y',
-            frames:[ x ]
+        const y : Record<string, any> = {
+            name:   'y',
+            frames: [ x ]
         };
-        const a: Record<string, any> = {
+        const a : Record<string, any> = {
             name: 'a'
         };
-        const b: Record<string, any> = {
-            name:  'b',
-            frames:[ a ]
+        const b : Record<string, any> = {
+            name:   'b',
+            frames: [ a ]
         };
-        const z: Record<string, any> = {
-            name:  'z',
-            frames:[ b, y ]
+        const z : Record<string, any> = {
+            name:   'z',
+            frames: [ b, y ]
         };
         x.top = z;
         x.parent = y;

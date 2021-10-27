@@ -15,7 +15,7 @@
     "karma": "cross-env NODE_ENV=test babel-node --trace-deprecation --presets '@babel/preset-env' ./node_modules/.bin/karma start",
     "tsc": "tsc",
     "test": "npm run lint && npm run tsc --no-emit && npm run karma",
-    "lint": "eslint --ext ts,tsx,js,jsx src/ test/",
+    "lint": "eslint --ext ts,tsx,js,jsx src/ test/ --fix",
     "clean": "rimraf dist coverage",
     "reinstall": "rimraf node_modules && npm install",
     "release": "./publish.sh",
